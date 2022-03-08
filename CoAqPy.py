@@ -230,7 +230,6 @@ st.title('Spatial query for Colorado aquifer water samples!')
 st.text('Find sample data near your location.')
 st.text('Built by Kurt Rucker:Li linknkedIn: https://www.linkedin.com/in/kurt-rucker')
 st.text('Source Code and Docs: https://github.com/ruckerk/CoWater')
-components.html("<script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'D1D47YOTB');kofiwidget2.draw();</script>")
 
 st.title('Specify Location')
 LAT_IN = st.text_input("Latitude: ",39.742043)
