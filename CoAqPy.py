@@ -21,113 +21,6 @@ import streamlit.components.v1 as components
 from tempfile import NamedTemporaryFile
 import tempfile
 
-##class popupWindow(object):
-##    def __init__(self,master):
-##        top=self.top=Toplevel(master)
-##        self.l=Label(top,text="Hello World")
-##        self.l.pack()
-##        self.e=Entry(top)
-##        self.e.pack()
-##        self.b=Button(top,text='Ok',command=self.cleanup)
-##        self.b.pack()
-##    def cleanup(self):
-##        self.value=self.e.get()
-##        self.top.destroy()
-##
-##class mainWindow(object):
-##    def __init__(self,master):
-##        self.master=master
-##        self.b=Button(master,text="click me!",command=self.popup)
-##        self.b.pack()
-##        self.b2=Button(master,text="print value",command=lambda: sys.stdout.write(self.entryValue()+'\n'))
-##        self.b2.pack()
-##
-##    def popup(self):
-##        self.w=popupWindow(self.master)
-##        self.b["state"] = "disabled" 
-##        self.master.wait_window(self.w.top)
-##        self.b["state"] = "normal"
-##
-##    def entryValue(self):
-##        return self.w.value
-
-
-
-##def TK_LOCATION():
-##    def TK_Vars():
-##        print("Lat: %s\nLon: %s\nEPSG: %s\nLabel: %s" % (e1.get(), e2.get(),e3.get(),e4.get()))
-##        global LAT_IN
-##        global LONG_IN
-##        global EPSG_ENTRY
-##        global RUNLABEL
-##        LAT_IN = float(e1.get())
-##        LONG_IN = float(e2.get())
-##        EPSG_ENTRY = int(e3.get())
-##        RUNLABEL = e4.get()
-##        
-##        window.destroy()
-##        return()
-##
-##    # SET EPSG TEXT SUGGESTIONS
-##    EPSG_TEXT = str('NAD87 Degrees: 4269'+os.linesep+
-##                'UTM 13N Feet: 4267')
-##
-##    # INITIALIZE TKINTER WINDOW
-##    window = tk.Tk()
-##
-##    #TK_TITLE = window.title('AOI Location')
-##    TK_LAT = tk.Label(window, text="Latitude: ").grid(row=0)
-##    TK_LONG = tk.Label(window, text="Longitude: ").grid(row=1)
-##    TK_EPSG = tk.Label(window, text="EPSG: ").grid(row=2)
-##    TK_LABEL = tk.Label(window, text="Label: ").grid(row=3)
-##
-##    e1 = tk.Entry(window)
-##    e2 = tk.Entry(window)
-##    e3 = tk.Entry(window)
-##    e4 = tk.Entry(window)
-##
-##    e1.grid(row=0, column=1)
-##    e2.grid(row=1, column=1)
-##    e3.grid(row=2, column=1)
-##    e4.grid(row=3, column=1)
-##
-##    lines = EPSG_TEXT.count('\n')
-##    TK_TEXT = tk.Text(window,
-##                  height = lines+1, 
-##                  width = 25, 
-##                  bg = "light cyan")
-##
-##    TK_TEXT.insert('end',EPSG_TEXT)
-##
-##    TK_TEXT.grid(row=4, column = 0, columnspan=2)
-##
-##    window.setvar(name ="LAT", value = e1.get())
-##    window.setvar(name ="LONG", value = e2.get())
-##    window.setvar(name ="EPSG", value = e3.get())
-##
-##    ##tk.Button(window, 
-##    ##          text='Quit', 
-##    ##          command=window.destroy).grid(row=5, 
-##    ##                                    column=0, 
-##    ##                                    sticky=tk.W, 
-##    ##                                    pady=4)
-##
-##    tk.Button(window, 
-##              text='Enter', command=TK_Vars).grid(row=5, 
-##                                                           column=1, 
-##                                                           sticky=tk.W, 
-##                                                           pady=4)
-##
-##    #execute TKinter window
-##    window.mainloop()
-##    return()
-
-# data source https://www.waterqualitydata.us/portal/#within=200&lat=40.66907209723748&long=-104.669&providers=NWIS&providers=STEWARDS&providers=STORET&mimeType=csv
-# NEW SITE https://www.waterqualitydata.us/#within=100&lat=40.5832238&long=-104.0990673&siteType=Well&siteType=Subsurface&sampleMedia=Water&sampleMedia=water&charGroup=Physical&charGroup=Not%20Assigned&charGroup=Sediment&charGroup=Inorganics%2C%20Major%2C%20Non-metals&charGroup=Inorganics%2C%20Minor%2C%20Non-metals&characteristicName=Total%20solids&characteristicName=Dissolved%20solids&characteristicName=Total%20dissolved%20solids&characteristicName=Fixed%20dissolved%20solids&characteristicName=Total%20fixed%20solids&characteristicName=Solids&characteristicName=Percent%20Solids&characteristicName=Total%20suspended%20solids&characteristicName=Fixed%20suspended%20solids&startDateLo=01-01-1900&startDateHi=01-01-2030&mimeType=csv&dataProfile=resultPhysChem&providers=NWIS&providers=STEWARDS&providers=STORET
-# https://www.waterqualitydata.us/#within=200&lat=40.5832238&long=-104.0990673&siteType=Well&siteType=Subsurface&siteType=Facility&siteType=Aggregate%20groundwater%20use&siteType=Not%20Assigned&sampleMedia=Water&sampleMedia=water&sampleMedia=Other&sampleMedia=No%20media&charGroup=Physical&charGroup=Not%20Assigned&charGroup=Sediment&charGroup=Inorganics%2C%20Major%2C%20Non-metals&charGroup=Inorganics%2C%20Minor%2C%20Non-metals&characteristicName=Total%20solids&characteristicName=Dissolved%20solids&characteristicName=Total%20dissolved%20solids&characteristicName=Fixed%20dissolved%20solids&characteristicName=Total%20fixed%20solids&characteristicName=Solids&characteristicName=Percent%20Solids&characteristicName=Total%20suspended%20solids&characteristicName=Fixed%20suspended%20solids&characteristicName=Salinity&startDateLo=01-01-1900&startDateHi=01-01-2030&mimeType=csv&dataProfile=resultPhysChem&providers=NWIS&providers=STEWARDS&providers=STORET
-
-
-
 def Pt_Distance(pt1,pt2):
     R = 6373*1000*3.28084
     lon1 = math.radians(pt1[0])
@@ -159,7 +52,7 @@ def GetKey(df,key):
     return df.iloc[0,df.keys().str.contains('.*'+key+'.*', regex=True, case=False,na=False)].keys().to_list()
 
 def WaterDataPull(LAT=40.5832238,LON=-104.0990673,RADIUS=10):
-
+    
     headers = {
         'Accept': 'application/zip',
     }
@@ -225,6 +118,7 @@ def WaterDataPull(LAT=40.5832238,LON=-104.0990673,RADIUS=10):
     #response = requests.post('https://www.waterqualitydata.us/data/Result/search?mimeType=csv&zip=yes', headers=headers, json=json_data)
     return r_data,r_station
 
+### MAIN SCRIPT###
 
 st.title('Spatial query for Colorado aquifer water samples!')
 st.text('Find sample data near your location.')
@@ -256,22 +150,6 @@ if True:
 
     (LONG2,LAT2) = transformer.transform(LONG_IN,LAT_IN)
 
-##    chunksize = 10 ** 6
-##    df2 = pd.DataFrame()
-##    with pd.read_csv(STATION_FILE, chunksize=chunksize,low_memory=False) as reader:
-##        for chunk in reader:
-##            chunk['PTS'] = list(chunk[['LongitudeMeasure','LatitudeMeasure']].to_records(index=False))
-##            chunk['Distance'] = chunk['PTS'].apply(Pt_Distance,pt2=(LONG2,LAT2))
-##            chunk['Bearing'] = chunk['PTS'].apply(Pt_Bearing,pt2=(LONG2,LAT2))
-##            mask = chunk['Distance'] <= 105600
-##            chunk = chunk[mask]
-##
-##            if ~chunk.empty:
-##                if df2.empty:
-##                    df2 = chunk
-##                else:
-##                    df2 = df2.append(chunk,ignore_index= True)   
-    
     r1,r2 = WaterDataPull(LAT_IN,LONG_IN,25)
 
     zf = zipfile.ZipFile(io.BytesIO(r1.content))
@@ -282,26 +160,7 @@ if True:
     f = zf.namelist()[0]
     df2 = pd.read_excel(zf.open(f,mode = 'r'))
 
-    
-    #df2 = pd.read_csv(io.StringIO(r2.content.decode('utf-8')))
-    #df = pd.read_csv(io.StringIO(r1.content.decode('utf-8')))
-
     LOCATIONS = df2['MonitoringLocationIdentifier'].unique()
-    
-##    with pd.read_csv(DATA_FILE, chunksize=chunksize,low_memory=False) as reader:
-##        for chunk in reader:
-##            mask = chunk['MonitoringLocationIdentifier'].isin(LOCATIONS)
-##            chunk = chunk[mask]
-##            #print(chunk.shape)
-##            if ~chunk.empty:
-##                if df.empty:
-##                    df = chunk
-##                else:
-##                    df = df.append(chunk,ignore_index= True)
-
-                
-    #df = pd.read_csv(DATA_FILE, chunksize = 100000)
-    #df2 = pd.read_csv(STATION_FILE, chunksize = 100000)
 
     df = df.loc[(df.CharacteristicName.str.contains('solid',case=False)) & (df.CharacteristicName.str.contains('dissolve',case=False))]
     df = df.loc[df['ResultMeasure/MeasureUnitCode'].str.contains('mg')==True]
