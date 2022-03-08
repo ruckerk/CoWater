@@ -236,28 +236,18 @@ st.title('Specify Location')
 LAT_IN = st.text_input("Latitude: ",39.742043)
 LONG_IN = st.text_input("Longitude: ",-104.991531)
 EPSG_ENTRY = st.text_input("EPSG Coordinate System: ",4269)
-RUNLABEL = st.text_input("Project Label: ",'AquiferData')                
+RUNLABEL = st.text_input("Project Label: ",'AquiferData')       
+
+LAT_IN = float(LAT_IN)
+LONG_IN = float(LONG_IN)
+EPSG_ENTRY = int(EPSG_ENTRY)
                  
-if False:
-    #STATION_FILE = 'station.csv'
-    #DATA_FILE = 'result.csv'
-    MINDEPTH = 000
-    MAXDEPTH= 6000
-    TK_LOCATION()
+MINDEPTH = 000
+MAXDEPTH= 6000
 
 OUTFILE = 'WaterReport_'+RUNLABEL+'_'+datetime.datetime.now().strftime("%d%m%Y")+'.csv'
 
-#DATA_FILE = 'resultphyschem.csv'
-#STATION_FILE = 'station_v2.csv'
-if True:
-
-    #STATION_FILE = 'station.csv'
-    #DATA_FILE = 'resultphyschem.csv'
-
-####################
-    
-
-    
+if True    
     EPSG_USGS = 4269 #NAD87
     #EPSG_ENTRY = 4267 # UTM
     transformer = Transformer.from_crs(EPSG_ENTRY, EPSG_USGS,always_xy =True)
