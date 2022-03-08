@@ -246,7 +246,7 @@ MAXDEPTH= 6000
 
 OUTFILE = 'WaterReport_'+RUNLABEL+'_'+datetime.datetime.now().strftime("%d%m%Y")+'.csv'
 
-if True    
+if True: 
     EPSG_USGS = 4269 #NAD87
     #EPSG_ENTRY = 4267 # UTM
     transformer = Transformer.from_crs(EPSG_ENTRY, EPSG_USGS,always_xy =True)
