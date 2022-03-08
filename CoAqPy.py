@@ -345,8 +345,10 @@ if True
     #LOCS = LOCS.drop_duplicates()
     #RESULT.loc[RESULT['MonitoringLocationIdentifier'].isin(LOCS) and RESULT['Distance']>0]
     #RESULT.Distance.isna()
+    
+    st.dataframe(RESULT.sort_values('Distance', ascending=True))
 
-    RESULT.sort_values('Distance', ascending=True).to_csv(OUTFILE)
+    #RESULT.sort_values('Distance', ascending=True).to_csv(OUTFILE)
 
 ###df.MonitoringLocationIdentifier
 ###df2.MonitoringLocationIdentifier
