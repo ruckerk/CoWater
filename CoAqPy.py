@@ -31,8 +31,7 @@ def Pt_Distance(pt1,pt2):
     dlat = lat2-lat1
     a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-    distance = R * c
-    return(distance)
+    return(R * c)
 
 def Pt_Bearing(pt1,pt2):
     #Bearing from pt1 to pt2
@@ -105,7 +104,9 @@ def WaterDataPull(LAT=40.5832238,LON=-104.0990673,RADIUS=10):
     r_data = requests.post('https://www.waterqualitydata.us/data/Result/search', headers=headers, params=params, json=json_data)
     #r_station = requests.post('https://www.waterqualitydata.us/data/Station/search', headers=headers, params=params, json=json_data)
 
-    r_station = requests.get("https://www.waterqualitydata.us/data/Station/search?within=" + str(RADIUS) + "&lat=" +  str(LAT)+'&long=' + str(LON) + "&siteType=Well&siteType=Subsurface&siteType=Facility&siteType=Aggregate%20groundwater%20use&siteType=Not%20Assigned&sampleMedia=Water&sampleMedia=water&sampleMedia=Other&sampleMedia=No%20media&characteristicName=Total%20dissolved%20solids&characteristicName=Dissolved%20solids&characteristicName=Total%20solids&characteristicName=Total%20suspended%20solids&characteristicName=Fixed%20dissolved%20solids&characteristicName=Fixed%20suspended%20solids&characteristicName=Solids&characteristicName=Percent%20Solids&characteristicName=Total%20fixed%20solids&characteristicName=Salinity&startDateLo=01-01-1900&startDateHi=01-01-2030&mimeType=xlsx&zip=yes&providers=NWIS&providers=STEWARDS&providers=STORET")
+    r_station = requests.get(
+        f"https://www.waterqualitydata.us/data/Station/search?within={str(RADIUS)}&lat={str(LAT)}&long={str(LON)}&siteType=Well&siteType=Subsurface&siteType=Facility&siteType=Aggregate%20groundwater%20use&siteType=Not%20Assigned&sampleMedia=Water&sampleMedia=water&sampleMedia=Other&sampleMedia=No%20media&characteristicName=Total%20dissolved%20solids&characteristicName=Dissolved%20solids&characteristicName=Total%20solids&characteristicName=Total%20suspended%20solids&characteristicName=Fixed%20dissolved%20solids&characteristicName=Fixed%20suspended%20solids&characteristicName=Solids&characteristicName=Percent%20Solids&characteristicName=Total%20fixed%20solids&characteristicName=Salinity&startDateLo=01-01-1900&startDateHi=01-01-2030&mimeType=xlsx&zip=yes&providers=NWIS&providers=STEWARDS&providers=STORET"
+        )
     
     #zipfile = ZipFile(BytesIO(r.content))
     #f = zipfile.namelist()[0]
@@ -193,7 +194,7 @@ OUTCOLS = ['MonitoringLocationIdentifier'
            ,'CharacteristicName'
            ,'ResultMeasureValue'
            ,'ResultMeasure/MeasureUnitCode']
-OUTCOLS = OUTCOLS + GetKey(df3,'depth.*value')
+OUTCOLS.append(GetKey(df3,'depth.*value'))
 
 RESULT = df3.loc[(df3['MonitoringLocationIdentifier'].isin(DATA)),OUTCOLS]
 #RESULT = RESULT.drop(['Distance', 'Bearing'],axis=1)
